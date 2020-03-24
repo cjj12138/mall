@@ -48,6 +48,11 @@
                 <div class="tools">
                     <button onclick="window.location.href='toAdd.html';" class="btn mini"><i class="fa fa-plus"></i>添加
                     </button>
+                    <form id="formID" name="file" >
+                        <input type="file" name="file" id="file"/>
+                        <button onclick="submitData()">提交</button>
+                    </form>
+                    <button value="下载模板" onclick="downloadExcel()">下载模板</button>
                 </div>
             </div>
             <div class="portlet-body">
@@ -180,6 +185,29 @@
 
     }
 
+    function submitData() {
+        var formData = new FormData($("#formID")[0]);
+        $.ajax({
+            url: 'upload/product',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(returndata) {
+                //成功返回的回调
+                console.log(returndata);
+            },
+            error: function(returndata) {
+                //接口错误的回调
+
+            }
+        });
+    };
+    function downloadExcel() {
+        window.location.href='downloadExcel'
+    }
     //		]]>
 </script>
 </body>

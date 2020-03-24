@@ -13,4 +13,8 @@ public interface ClassificationDao extends JpaRepository<Classification, Integer
     Page<Classification> findByType(int type, Pageable pageable);
 
     List<Classification> findByParentId(int cid);
+
+    Classification findClassificationByCname(String name);
+
+
 }

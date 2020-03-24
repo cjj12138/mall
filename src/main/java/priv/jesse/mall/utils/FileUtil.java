@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.security.MessageDigest;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -117,34 +118,36 @@ public class FileUtil {
      * 图片写出
      *
      * @param sheetList
-     * @return
+     * @return 图片名字的链表
      * @throws IOException
      */
-    public static void printImg(Map<String, PictureData> sheetList) throws IOException {
-
+    public static LinkedList<String>  printImg(Map<String, PictureData> sheetList) throws IOException {
+        LinkedList<String> fileNames=new LinkedList<>();
         //for (Map<String, PictureData> map : sheetList) {
         Object key[] = sheetList.keySet().toArray();
         for (int i = 0; i < sheetList.size(); i++) {
             // 获取图片流
             PictureData pic = sheetList.get(key[i]);
             // 获取图片索引
-            String picName = key[i].toString();
+            String picName = UUIDUtils.getUUID();
+
             //System.out.println(picName);
             // 获取图片格式
             String ext = pic.suggestFileExtension();
-
+            fileNames.add(picName + "." + ext);
             byte[] data = pic.getData();
             //得到当前项目路径
             String url = System.getProperty("user.dir");
             System.out.println(url+"\\file");
             //图片保存路径
-            FileOutputStream out = new FileOutputStream(url + picName + "." + ext);
+            FileOutputStream out = new FileOutputStream(url+"\\file\\" + picName + "." + ext);
 
             out.write(data);
             out.close();
         }
         // }
         System.out.println("保存完毕");
+        return fileNames;
     }
 
 }

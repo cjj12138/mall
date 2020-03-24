@@ -70,4 +70,17 @@ public interface ClassificationService {
      * @return
      */
     List<Classification> findByParentId(int cid);
+
+    /**
+     * 根据二级菜单的名字查找菜单
+     * @param name
+     * @return
+     */
+    Classification findByName(String name);
+
+    /**
+     * 获取所有二级分类
+     * @return
+     */
+    List<Classification> findAll();
 }

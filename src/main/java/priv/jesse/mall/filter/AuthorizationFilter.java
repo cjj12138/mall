@@ -20,7 +20,7 @@ import java.util.HashMap;
 /**
  * 权限拦截器
  *
- * @author hfb
+ *
  *  
  */
 @WebFilter
@@ -70,11 +70,13 @@ public class AuthorizationFilter implements Filter {
                     || path.contains("/mall/h2-console")) {
                 chain.doFilter(request, response);
             } else {
+//                System.out.println("拦截");
                 processAccessControl(request, response, chain);
             }
 
         } else {
             //其他静态资源都不拦截
+//            System.out.println("放行");
             chain.doFilter(request, response);
         }
     }
