@@ -78,6 +78,10 @@ public class AdminProductController {
     @RequestMapping("/del.do")
     @ResponseBody
     public ResultBean<Boolean> del(int id) {
+        Product p = productService.findById(id);
+        String[] urls=p.getImage().split("/");
+        String path =System.getProperty("user.dir")+"\\file\\"+urls[urls.length-1];
+        FileUtil.deleteDir(path);
         productService.delById(id);
         return new ResultBean<>(true);
     }
@@ -162,7 +166,8 @@ public class AdminProductController {
     }
 
     @RequestMapping("/upload/product")
-    public void uploadProduct(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    @ResponseBody
+    public ResultBean uploadProduct(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         System.out.println(file.getOriginalFilename());
         InputStream inputStream = file.getInputStream();
 
@@ -192,6 +197,7 @@ public class AdminProductController {
         System.out.println(fileNames.get(0));
         System.out.println("************");
         int totalRowNum = sheet.getLastRowNum();
+        List<Product> products = new ArrayList<>();
         for (int i = 1; i <= totalRowNum; i++) {
             Product product = new Product();
             //设置csid
@@ -219,40 +225,39 @@ public class AdminProductController {
             //设置时间
             product.setPdate(new Date());
             //数据插入
-            System.out.println(product);
-            int id = productService.create(product);
-            System.out.println(id);
+            products.add(product);
         }
-        response.sendRedirect("toList.html");
+        productService.saveAll(products);
+        return new ResultBean(200);
     }
 
 
     @RequestMapping("downloadExcel")
     public void downloadExcel(HttpServletResponse response) throws Exception {
         //1.获取所有2级分类
-        List<Classification> classifications=classificationService.findAll();
-        List<String> cnames=new ArrayList<>();
-        for (Classification c:classifications){
+        List<Classification> classifications = classificationService.findAll();
+        List<String> cnames = new ArrayList<>();
+        for (Classification c : classifications) {
             cnames.add(c.getCname());
         }
-        String cs[]= cnames.toArray(new String[cnames.size()]);
+        String cs[] = cnames.toArray(new String[cnames.size()]);
         System.out.println(cs);
         //2.加载模板
         Resource resource = new ClassPathResource("muban.xlsx");
         FileInputStream fileInputStream = new FileInputStream(resource.getFile());
         //3.根据模板创建工作簿
         Workbook wb = new XSSFWorkbook(fileInputStream);
-        XSSFSheet sheet=((XSSFWorkbook) wb).getSheetAt(0);
+        XSSFSheet sheet = ((XSSFWorkbook) wb).getSheetAt(0);
         //4.设置下拉框
         // 设置第一列的1-100行为下拉列表
         CellRangeAddressList regions = new CellRangeAddressList(0, 100, 0, 0);
-        CellRangeAddressList regios1=new CellRangeAddressList(0,100,2,2);
+        CellRangeAddressList regios1 = new CellRangeAddressList(0, 100, 2, 2);
         // 创建下拉列表数据
         XSSFDataValidationHelper dvHelper = new XSSFDataValidationHelper(sheet);
         DataValidationConstraint createExplicitListConstraint = dvHelper.createExplicitListConstraint(cs);
         DataValidation createValidation = dvHelper.createValidation(createExplicitListConstraint, regions);
 
-        String[] is_hots={"是","否"};
+        String[] is_hots = {"是", "否"};
         DataValidationConstraint createExplicitListConstraint1 = dvHelper.createExplicitListConstraint(is_hots);
         DataValidation createValidation1 = dvHelper.createValidation(createExplicitListConstraint1, regios1);
         // 绑定
@@ -261,6 +266,6 @@ public class AdminProductController {
         //5.下载
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         wb.write(os);
-        DownloadUtils.download(os,response,"商品上传模板.xlsx");
+        DownloadUtils.download(os, response, "商品上传模板.xlsx");
     }
 }

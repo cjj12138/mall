@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import priv.jesse.mall.dao.ClassificationDao;
 import priv.jesse.mall.dao.ProductDao;
 import priv.jesse.mall.entity.Classification;
@@ -98,5 +101,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delById(int id) {
         productDao.delete(id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT, readOnly = false)
+    @Override
+    public void saveAll(List<Product> products){
+         productDao.save(products);
     }
 }

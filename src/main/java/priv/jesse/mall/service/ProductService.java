@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import priv.jesse.mall.entity.Product;
 import java.util.List;
 
-public interface ProductService {
+public interface ProductService  {
     /**
      * 根据id查询
      *
@@ -75,4 +75,10 @@ public interface ProductService {
      */
     void delById(int id);
 
+    /**
+     * 列表插入
+     * @param products
+     * @return
+     */
+    void saveAll(List<Product> products);
 }

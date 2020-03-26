@@ -121,8 +121,8 @@ public class FileUtil {
      * @return 图片名字的链表
      * @throws IOException
      */
-    public static LinkedList<String>  printImg(Map<String, PictureData> sheetList) throws IOException {
-        LinkedList<String> fileNames=new LinkedList<>();
+    public static LinkedList<String> printImg(Map<String, PictureData> sheetList) throws IOException {
+        LinkedList<String> fileNames = new LinkedList<>();
         //for (Map<String, PictureData> map : sheetList) {
         Object key[] = sheetList.keySet().toArray();
         for (int i = 0; i < sheetList.size(); i++) {
@@ -138,9 +138,9 @@ public class FileUtil {
             byte[] data = pic.getData();
             //得到当前项目路径
             String url = System.getProperty("user.dir");
-            System.out.println(url+"\\file");
+            System.out.println(url + "\\file");
             //图片保存路径
-            FileOutputStream out = new FileOutputStream(url+"\\file\\" + picName + "." + ext);
+            FileOutputStream out = new FileOutputStream(url + "\\file\\" + picName + "." + ext);
 
             out.write(data);
             out.close();
@@ -150,4 +150,33 @@ public class FileUtil {
         return fileNames;
     }
 
+    /**
+     * 迭代删除文件夹
+     *
+     * @param dirPath 文件夹路径
+     */
+
+    public static void deleteDir(String dirPath) {
+        // 读取
+        File file = new File(dirPath);
+        // 判断是否是文件夹
+        if (file.isFile()) {
+            // 删除
+            file.delete();
+        } else {
+            // 获取文件
+            File[] files = file.listFiles();
+            if (files == null) {
+                // 删除
+                file.delete();
+            } else {
+                // 循环
+                for (int i = 0; i < files.length; i++) {
+                    deleteDir(files[i].getAbsolutePath());
+                }
+                // 删除
+                file.delete();
+            }
+        }
+    }
 }
