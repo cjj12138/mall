@@ -16,6 +16,7 @@ import priv.jesse.mall.entity.User;
 import priv.jesse.mall.service.OrderService;
 import priv.jesse.mall.service.ShopCartService;
 import priv.jesse.mall.service.exception.LoginException;
+import priv.jesse.mall.utils.UUIDUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,6 +68,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 查询订单项详情
+     *
      * @param orderId
      * @return
      */
@@ -121,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderDao.findOne(orderId);
         if (order == null)
             throw new RuntimeException("订单不存在");
-        orderDao.updateState(STATE_WAITE_SEND,order.getId());
+        orderDao.updateState(STATE_WAITE_SEND, order.getId());
     }
 
     /**
@@ -134,13 +136,15 @@ public class OrderServiceImpl implements OrderService {
      * @param response
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void submit(String name, String phone, String addr, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Object user = request.getSession().getAttribute("user");
-        if (user == null)
+        if (user == null) {
             throw new LoginException("请登录！");
+        }
         User loginUser = (User) user;
         Order order = new Order();
+        order.setId(Integer.parseInt(UUIDUtils.getUUID()));
         order.setName(name);
         order.setPhone(phone);
         order.setAddr(addr);
@@ -172,6 +176,6 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderDao.findOne(orderId);
         if (order == null)
             throw new RuntimeException("订单不存在");
-        orderDao.updateState(STATE_COMPLETE,order.getId());
+        orderDao.updateState(STATE_COMPLETE, order.getId());
     }
 }
