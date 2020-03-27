@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aaa7d891-749b-42ff-b980-8a8fdddcedf7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/filter/AuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/filter/AuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/dao/OrderItemDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/dao/OrderItemDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/filter/AuthorizationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/filter/AuthorizationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="aaa7d891-749b-42ff-b980-8a8fdddcedf7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/priv/jesse/mall/filter/AuthorizationFilter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="72" column="44" lean-forward="true" selection-end-line="134" />
+              <caret line="72" column="44" selection-end-line="134" />
             </state>
           </provider>
         </entry>
@@ -80,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/data_display/list.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -100,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="318">
-              <caret line="404" column="52" lean-forward="true" selection-start-line="404" selection-start-column="52" selection-end-line="404" selection-end-column="52" />
+              <caret line="404" column="52" selection-start-line="404" selection-start-column="52" selection-end-line="404" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -331,7 +325,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585322579970" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585322624066" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -424,7 +418,7 @@
       <workItem from="1585049920050" duration="10754000" />
       <workItem from="1585189739652" duration="1354000" />
       <workItem from="1585199022889" duration="2577000" />
-      <workItem from="1585320716940" duration="1796000" />
+      <workItem from="1585320716940" duration="1910000" />
     </task>
     <task id="LOCAL-00001" summary="add 商品excel批量保存&#10;add 商品模板excel下载">
       <created>1585060526404</created>
@@ -447,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585322137707</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="开始">
+      <created>1585322634292</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585322634292</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -480,7 +481,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35039000" />
+    <option name="totallyTimeSpent" value="35153000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -505,7 +506,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.28611898" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.28611898" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -888,7 +889,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
-          <caret line="404" column="52" lean-forward="true" selection-start-line="404" selection-start-column="52" selection-end-line="404" selection-end-column="52" />
+          <caret line="404" column="52" selection-start-line="404" selection-start-column="52" selection-end-line="404" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -909,13 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/data_display/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/priv/jesse/mall/MallApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -926,7 +920,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/priv/jesse/mall/filter/AuthorizationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="72" column="44" lean-forward="true" selection-end-line="134" />
+          <caret line="72" column="44" selection-end-line="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/data_display/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
