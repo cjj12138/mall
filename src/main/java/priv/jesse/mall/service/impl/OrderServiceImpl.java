@@ -142,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
         }
         User loginUser = (User) user;
         Order order = new Order();
-        order.setId(1);
+        order.setId(Integer.parseInt(UUIDUtils.getUUID()));
         order.setName(name);
         order.setPhone(phone);
         order.setAddr(addr);
