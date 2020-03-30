@@ -9,10 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import priv.jesse.mall.dao.OrderDao;
 import priv.jesse.mall.dao.OrderItemDao;
 import priv.jesse.mall.dao.ProductDao;
-import priv.jesse.mall.entity.Order;
-import priv.jesse.mall.entity.OrderItem;
-import priv.jesse.mall.entity.Product;
-import priv.jesse.mall.entity.User;
+import priv.jesse.mall.entity.*;
 import priv.jesse.mall.service.OrderService;
 import priv.jesse.mall.service.ShopCartService;
 import priv.jesse.mall.service.exception.LoginException;
@@ -20,6 +17,7 @@ import priv.jesse.mall.utils.UUIDUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -144,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
         }
         User loginUser = (User) user;
         Order order = new Order();
-        order.setId(Integer.parseInt(UUIDUtils.getUUID()));
+        order.setId(1);
         order.setName(name);
         order.setPhone(phone);
         order.setAddr(addr);
@@ -162,6 +160,12 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotal(total);
         orderDao.save(order);
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date date=new Date();
+        String dateString =simpleDateFormat.format(date);
+        System.out.println(dateString);
+        orderDao.updateCount(dateString);
+
         //重定向到订单列表页面
         response.sendRedirect("/mall/order/toList.html");
     }

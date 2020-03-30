@@ -42,14 +42,15 @@
     myChart.setOption(option);
 
     function setTabledata(){
-        console.log("111111111111")
         $.ajax({
-            url: "/admin/data_display/product_data.do",
+            url: "/mall/admin/data_display/product_data.do",
             type: "get",
             success: function (result) {
                 console.log(result);
+                var arrayObj = new Array();
             }
         });
+        console.log("111111111111")
     }
 </script>
 </body>

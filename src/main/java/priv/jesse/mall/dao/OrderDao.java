@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import priv.jesse.mall.entity.Order;
 
 import javax.transaction.Transactional;
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
 public interface OrderDao extends JpaRepository<Order, Integer> {
@@ -20,10 +22,20 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
     @Query(value = "update `order` o set o.state=?1 where o.id=?2",nativeQuery = true)
     void updateState(int state,int id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "insert into date_count(date,count) values(?,1)" +
+            "ON DUPLICATE KEY UPDATE date=CURDATE(),count=count+1",nativeQuery = true)
+    void updateCount(String data);
+
     /**
      * 查找用户的订单
      * @param userId
      * @return
      */
     List<Order> findByUserId(int userId);
+
+    List<Order> findAll();
+
+
 }

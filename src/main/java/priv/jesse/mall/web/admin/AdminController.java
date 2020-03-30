@@ -64,4 +64,10 @@ public class AdminController {
         request.getSession().removeAttribute("login_user");
         response.sendRedirect("toLogin.html");
     }
+
+    @RequestMapping("/data_display/toList.html")
+    public String toList() {
+        System.out.println("1111111111111111");
+        return "admin/data_display/list";
+    }
 }
