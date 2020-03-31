@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import priv.jesse.mall.entity.DateCount;
 import priv.jesse.mall.entity.Order;
 import priv.jesse.mall.entity.OrderItem;
+import priv.jesse.mall.entity.Product;
 import priv.jesse.mall.entity.pojo.ResultBean;
 import priv.jesse.mall.service.DataService;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RestController
@@ -31,11 +30,17 @@ public class AdminDataDisplayController {
         return new ResultBean<>(orderItem);
     }
 
-    @RequestMapping("/product_order")
-    public ResultBean<List<DateCount>> getOrder(){
+    @RequestMapping("/product_order_line")
+    public ResultBean<List<DateCount>> getOrder_line(){
         List<DateCount> orders=this.dataService.findAll();
         System.out.println(orders);
         ResultBean<List<DateCount>> resultBean=new ResultBean(orders);
         return resultBean;
+    }
+
+    @RequestMapping("/product_order_bar")
+    public ResultBean<List<HashMap>> get_bar(){
+        List<HashMap> products=this.dataService.findCount();
+        return  new ResultBean<>(products);
     }
 }

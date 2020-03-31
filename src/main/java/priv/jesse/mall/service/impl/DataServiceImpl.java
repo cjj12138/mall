@@ -8,9 +8,12 @@ import priv.jesse.mall.dao.OrderItemDao;
 import priv.jesse.mall.entity.DateCount;
 import priv.jesse.mall.entity.Order;
 import priv.jesse.mall.entity.OrderItem;
+import priv.jesse.mall.entity.Product;
 import priv.jesse.mall.service.DataService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DataServiceImpl implements DataService {
@@ -32,5 +35,10 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<DateCount> findAll() {
         return this.dateCountDao.findAll();
+    }
+
+    @Override
+    public List<HashMap> findCount() {
+        return this.dateCountDao.findCount();
     }
 }
