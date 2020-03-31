@@ -23,34 +23,51 @@
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
 
+
     // 指定图表的配置项和数据
     option = {
         xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ''
         },
         yAxis: {
             type: 'value'
         },
         series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name:"订单",
+            data: '',
             type: 'line'
         }]
     };
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    //myChart.setOption(option);
 
     function setTabledata(){
         $.ajax({
-            url: "/mall/admin/data_display/product_data.do",
+            url: "/mall/admin/data_display/product_order",
             type: "get",
             success: function (result) {
-                console.log(result);
-                var arrayObj = new Array();
+                console.log(result.data);
+                var xdata=new Array();
+                var ydata=new Array();
+                for (var i in result.data){
+                    xdata.push(result.data[i].date);
+                    ydata.push(result.data[i].count);
+                }
+                myChart.setOption(option);
+                myChart.setOption({
+                    xAxis: {
+                        data: xdata
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:"订单数量",
+                        data: ydata
+                    }]
+                });
             }
         });
-        console.log("111111111111")
     }
 </script>
 </body>

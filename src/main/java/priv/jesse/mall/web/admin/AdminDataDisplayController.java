@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import priv.jesse.mall.entity.DateCount;
 import priv.jesse.mall.entity.Order;
 import priv.jesse.mall.entity.OrderItem;
 import priv.jesse.mall.entity.pojo.ResultBean;
@@ -31,9 +32,10 @@ public class AdminDataDisplayController {
     }
 
     @RequestMapping("/product_order")
-    public ResultBean<List<Order>> getOrder(){
-        List<Order> orders=this.dataService.findAll();
+    public ResultBean<List<DateCount>> getOrder(){
+        List<DateCount> orders=this.dataService.findAll();
         System.out.println(orders);
-        return new ResultBean<>(orders);
+        ResultBean<List<DateCount>> resultBean=new ResultBean(orders);
+        return resultBean;
     }
 }

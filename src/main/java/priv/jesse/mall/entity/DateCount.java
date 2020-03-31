@@ -1,5 +1,7 @@
 package priv.jesse.mall.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class DateCount implements Serializable {
         this.id = id;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     public Date getDate() {
         return date;
     }
@@ -48,5 +51,12 @@ public class DateCount implements Serializable {
         this.count = count;
     }
 
-
+    @Override
+    public String toString() {
+        return "DateCount{" +
+                "id=" + id +
+                ", date=" + date +
+                ", count=" + count +
+                '}';
+    }
 }
