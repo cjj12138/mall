@@ -126,8 +126,9 @@ public class AdminClassificationController {
     @ResponseBody
     @RequestMapping("/getTotal.do")
     public ResultBean<Integer> getTotal(int type) {
-        Pageable pageable = new PageRequest(1, 15, null);
+        Pageable pageable = new PageRequest(1, 7, null);
         int count = (int) classificationService.findAll(type, pageable).getTotalElements();
+        System.out.println(count);
         return new ResultBean<>(count);
     }
 }

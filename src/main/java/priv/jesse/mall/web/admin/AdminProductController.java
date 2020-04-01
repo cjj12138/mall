@@ -79,8 +79,8 @@ public class AdminProductController {
     @ResponseBody
     public ResultBean<Boolean> del(int id) {
         Product p = productService.findById(id);
-        String[] urls=p.getImage().split("/");
-        String path =System.getProperty("user.dir")+"\\file\\"+urls[urls.length-1];
+        String[] urls = p.getImage().split("/");
+        String path = System.getProperty("user.dir") + "\\file\\" + urls[urls.length - 1];
         FileUtil.deleteDir(path);
         productService.delById(id);
         return new ResultBean<>(true);
@@ -115,6 +115,7 @@ public class AdminProductController {
             //request.getRequestDispatcher("toEdit.html?id=" + id).forward(request, response);
         }
     }
+
     @RequestMapping(method = RequestMethod.POST, value = "/update.do")
     public void update(int id,
                        String title,
@@ -165,7 +166,7 @@ public class AdminProductController {
 
     @RequestMapping("/upload/product")
     @ResponseBody
-    public ResultBean uploadProduct(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    public ResultBean<Boolean> uploadProduct(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         System.out.println(file.getOriginalFilename());
         InputStream inputStream = file.getInputStream();
 
@@ -176,9 +177,10 @@ public class AdminProductController {
         try {
             //2007版本的excel，用.xlsx结尾
             wookbook = new XSSFWorkbook(inputStream);//得到工作簿
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return new ResultBean<>(false);
         }
 
         Map<String, PictureData> maplist = null;
@@ -196,37 +198,41 @@ public class AdminProductController {
         System.out.println("************");
         int totalRowNum = sheet.getLastRowNum();
         List<Product> products = new ArrayList<>();
-        for (int i = 1; i <= totalRowNum; i++) {
-            Product product = new Product();
-            //设置csid
-            String class_name = sheet.getRow(i).getCell(0).getStringCellValue();
-            Classification classification = classificationService.findByName(class_name);
-            product.setCsid(classification.getId());
-            //设置title
-            String title = sheet.getRow(i).getCell(1).getStringCellValue();
-            product.setTitle(title);
-            //设置是否热卖
-            String is_sale = sheet.getRow(i).getCell(2).getStringCellValue();
-            product.setIsHot(is_sale.equals("是") ? 1 : 0);
-            //设置市场价格
-            Double mark_price = sheet.getRow(i).getCell(3).getNumericCellValue();
-            product.setMarketPrice(mark_price);
-            //设置平台价格
-            Double shop_price = sheet.getRow(i).getCell(4).getNumericCellValue();
-            product.setShopPrice(shop_price);
-            //设置商品描述
-            String des = sheet.getRow(i).getCell(5).getStringCellValue();
-            product.setDesc(des);
-            //设置商品图片
-            String baseUrl = "/mall/admin/product/img/";
-            product.setImage(baseUrl + fileNames.get(i - 1));
-            //设置时间
-            product.setPdate(new Date());
-            //数据插入
-            products.add(product);
+        try {
+            for (int i = 1; i <= totalRowNum; i++) {
+                Product product = new Product();
+                //设置csid
+                String class_name = sheet.getRow(i).getCell(0).getStringCellValue();
+                Classification classification = classificationService.findByName(class_name);
+                product.setCsid(classification.getId());
+                //设置title
+                String title = sheet.getRow(i).getCell(1).getStringCellValue();
+                product.setTitle(title);
+                //设置是否热卖
+                String is_sale = sheet.getRow(i).getCell(2).getStringCellValue();
+                product.setIsHot(is_sale.equals("是") ? 1 : 0);
+                //设置市场价格
+                Double mark_price = sheet.getRow(i).getCell(3).getNumericCellValue();
+                product.setMarketPrice(mark_price);
+                //设置平台价格
+                Double shop_price = sheet.getRow(i).getCell(4).getNumericCellValue();
+                product.setShopPrice(shop_price);
+                //设置商品描述
+                String des = sheet.getRow(i).getCell(5).getStringCellValue();
+                product.setDesc(des);
+                //设置商品图片
+                String baseUrl = "/mall/admin/product/img/";
+                product.setImage(baseUrl + fileNames.get(i - 1));
+                //设置时间
+                product.setPdate(new Date());
+                //数据插入
+                products.add(product);
+            }
+            productService.saveAll(products);
+        }catch (Exception e){
+            return new ResultBean<>(false);
         }
-        productService.saveAll(products);
-        return new ResultBean(200);
+        return new ResultBean<>(true);
     }
 
 
