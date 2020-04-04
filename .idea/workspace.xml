@@ -2,31 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aaa7d891-749b-42ff-b980-8a8fdddcedf7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/NameValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/ADBC547BEB8808B2EF85FA21B75F61.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mall.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/dao/DateCountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/dao/DateCountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/service/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/service/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/service/impl/DataServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/service/impl/DataServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/web/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/web/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/web/admin/AdminDataDisplayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/priv/jesse/mall/web/admin/AdminDataDisplayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/image/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/data_display/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/data_display/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/mall.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/dao/DateCountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/dao/DateCountDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/service/DataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/service/DataService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/service/impl/DataServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/service/impl/DataServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/web/admin/AdminDataDisplayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/web/admin/AdminDataDisplayController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/image/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/data_display/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/data_display/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/entity/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/entity/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/entity/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/entity/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/priv/jesse/mall/web/admin/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/priv/jesse/mall/web/admin/AdminController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -106,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+            <state relative-caret-position="304">
+              <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -404,7 +383,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586019537336" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586020082836" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -506,7 +485,7 @@
       <workItem from="1585637145380" duration="14195000" />
       <workItem from="1585657149746" duration="14209000" />
       <workItem from="1585749838490" duration="1796000" />
-      <workItem from="1586002518927" duration="16892000" />
+      <workItem from="1586002518927" duration="17189000" />
     </task>
     <task id="LOCAL-00001" summary="add 商品excel批量保存&#10;add 商品模板excel下载">
       <created>1585060526404</created>
@@ -571,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585751594827</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="增加了饼状图 ，数据库需要添加一个索引">
+      <created>1586019835389</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1586019835389</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -604,7 +590,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107378000" />
+    <option name="totallyTimeSpent" value="107675000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,7 +665,8 @@
     <MESSAGE value="echart的应用" />
     <MESSAGE value="增加了实体类DateCountDao及相关类，echart的应用" />
     <MESSAGE value="修改一些静态资源&#10;增加文件导入的异常处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改一些静态资源&#10;增加文件导入的异常处理" />
+    <MESSAGE value="增加了饼状图 ，数据库需要添加一个索引" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了饼状图 ，数据库需要添加一个索引" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/priv/jesse/mall/service/ProductService.java">
@@ -1095,8 +1082,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/priv/jesse/mall/entity/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+        <state relative-caret-position="304">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
         </state>
       </provider>
     </entry>
