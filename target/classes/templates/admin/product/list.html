@@ -195,13 +195,20 @@
             cache: false,
             contentType: false,
             processData: false,
-            success: function(returndata) {
-                //成功返回的回调
-                console.log(returndata);
+            success: function(result) {
+                if (result.state == 0) {
+                    if (result.data == true) {
+                        alert("添加成功！");
+                    } else {
+                        alert("请检查excel是否正确！");
+                    }
+                } else {
+                    alert(result.message);
+                }
             },
-            error: function(returndata) {
+            error: function(result) {
                 //接口错误的回调
-
+                alert("网络错误");
             }
         });
     };

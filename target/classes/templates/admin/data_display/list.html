@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <meta charset="UTF-8"/>
+    <title>数据中心</title>
+    <script th:src="@{/js/echarts.min.js}" type="text/javascript"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<button onclick="setlineTabledata()">Line</button>
+<button onclick="setbarTabledata()">bar</button>
+<script th:src="@{/js/jquery-1.10.1.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script th:src="@{/js/jquery-ui-1.10.1.custom.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script type="text/javascript">
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    // 指定图表的配置项和数据
+    option = {
+        xAxis: {
+            type: 'category',
+            data: '',
+            axisLabel: {
+                interval: 0,
+                formatter: function (params) {
+                    var newParamsName = "";// 最终拼接成的字符串
+                    var paramsNameNumber = params.length;// 实际标签的个数
+                    var provideNumber = 8;// 每行能显示的字的个数
+                    var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+                    /**
+                     * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
+                     */
+                    // 条件等同于rowNumber>1
+                    if (paramsNameNumber > provideNumber) {
+                        /** 循环每一行,p表示行 */
+                        /*<![CDATA[*/
+                        for (var p = 0; p < rowNumber; p++) {
+                            var tempStr = "";// 表示每一次截取的字符串
+                            var start = p * provideNumber;// 开始截取的位置
+                            var end = start + provideNumber;// 结束截取的位置
+                            // 此处特殊处理最后一行的索引值
+                            if (p == rowNumber - 1) {
+                                // 最后一次不换行
+                                tempStr = params.substring(start, paramsNameNumber);
+                            } else {
+                                // 每一次拼接字符串并换行
+                                tempStr = params.substring(start, end) + "\n";
+                            }
+                            newParamsName += tempStr;// 最终拼成的字符串
+                        }
+                        /*]]>*/
+
+                    } else {
+                        // 将旧标签的值赋给新标签
+                        newParamsName = params;
+                    }
+                    //将最终的字符串返回
+                    return newParamsName
+                    return params.split("").join("\n");
+
+                }
+            }
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name:"订单",
+            data: '',
+            type: 'line'
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    //myChart.setOption(option);
+    function setbarTabledata() {
+        $.ajax({
+            url: "/mall/admin/data_display/product_order_bar",
+            type: "get",
+            success:function (result) {
+                console.log(result)
+                var xdata=new Array();
+                var ydata=new Array();
+                for (var i in result.data){
+                    xdata.push(result.data[i][8])
+                    ydata.push(result.data[i][9])
+                }
+                console.log(xdata)
+                myChart.setOption(option);
+                myChart.setOption({
+                    xAxis: {
+                        data: xdata
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:"订单数量",
+                        data: ydata,
+                        type:'bar'
+                    }]
+                });
+            }
+        })
+    }
+    function setlineTabledata(){
+        $.ajax({
+            url: "/mall/admin/data_display/product_order_line",
+            type: "get",
+            success: function (result) {
+                console.log(result.data);
+                var xdata=new Array();
+                var ydata=new Array();
+                for (var i in result.data){
+                    xdata.push(result.data[i].date);
+                    ydata.push(result.data[i].count);
+                }
+                myChart.setOption(option);
+                myChart.setOption({
+                    xAxis: {
+                        data: xdata
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name:"订单数量",
+                        data: ydata,
+                        type:'line'
+                    }]
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>
