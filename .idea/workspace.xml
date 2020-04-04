@@ -383,7 +383,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586020082836" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586020205386" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -485,7 +485,7 @@
       <workItem from="1585637145380" duration="14195000" />
       <workItem from="1585657149746" duration="14209000" />
       <workItem from="1585749838490" duration="1796000" />
-      <workItem from="1586002518927" duration="17189000" />
+      <workItem from="1586002518927" duration="17436000" />
     </task>
     <task id="LOCAL-00001" summary="add 商品excel批量保存&#10;add 商品模板excel下载">
       <created>1585060526404</created>
@@ -590,7 +590,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107675000" />
+    <option name="totallyTimeSpent" value="107922000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
