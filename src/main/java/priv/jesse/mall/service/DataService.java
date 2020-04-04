@@ -1,9 +1,6 @@
 package priv.jesse.mall.service;
 
-import priv.jesse.mall.entity.DateCount;
-import priv.jesse.mall.entity.Order;
-import priv.jesse.mall.entity.OrderItem;
-import priv.jesse.mall.entity.Product;
+import priv.jesse.mall.entity.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,4 +13,6 @@ public interface DataService {
     List<DateCount> findAll();
 
     List<HashMap> findCount();
+
+    List<Object[]> findPie();
 }

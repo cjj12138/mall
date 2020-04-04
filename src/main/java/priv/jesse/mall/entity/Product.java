@@ -1,5 +1,6 @@
 package priv.jesse.mall.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -51,6 +52,7 @@ public class Product implements Serializable {
      * 商品创建日期
      */
     @Column
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date pdate;
 
     @Transient

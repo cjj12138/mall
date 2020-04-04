@@ -1,14 +1,13 @@
 package priv.jesse.mall.web.admin;
 
+import org.codehaus.jackson.map.util.JSONPObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import priv.jesse.mall.entity.DateCount;
-import priv.jesse.mall.entity.Order;
-import priv.jesse.mall.entity.OrderItem;
-import priv.jesse.mall.entity.Product;
+import priv.jesse.mall.entity.*;
 import priv.jesse.mall.entity.pojo.ResultBean;
 import priv.jesse.mall.service.DataService;
 
@@ -22,13 +21,6 @@ public class AdminDataDisplayController {
     @Autowired
     private DataService dataService;
 
-    @RequestMapping("/product_data.do")
-    public ResultBean<List<OrderItem>> getData(){
-        System.out.println("hello");
-        System.out.println(dataService.findByProductId(9));
-        List<OrderItem> orderItem=dataService.findByProductId(9);
-        return new ResultBean<>(orderItem);
-    }
 
     @RequestMapping("/product_order_line")
     public ResultBean<List<DateCount>> getOrder_line(){
@@ -42,5 +34,17 @@ public class AdminDataDisplayController {
     public ResultBean<List<HashMap>> get_bar(){
         List<HashMap> products=this.dataService.findCount();
         return  new ResultBean<>(products);
+    }
+
+    @RequestMapping("/product_order_pie")
+    public ResultBean<List<NameValue>> get_pie(){
+        List<Object[]> products=this.dataService.findPie();
+        System.out.println(products);
+        List<NameValue> nameValues=new ArrayList<>();
+        for (Object[] obj:products){
+            NameValue nameValue=new NameValue(obj[0].toString(),obj[1].toString());
+            nameValues.add(nameValue);
+        }
+        return new ResultBean<>(nameValues);
     }
 }

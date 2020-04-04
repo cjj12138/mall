@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import priv.jesse.mall.dao.DateCountDao;
 import priv.jesse.mall.dao.OrderDao;
 import priv.jesse.mall.dao.OrderItemDao;
-import priv.jesse.mall.entity.DateCount;
-import priv.jesse.mall.entity.Order;
-import priv.jesse.mall.entity.OrderItem;
-import priv.jesse.mall.entity.Product;
+import priv.jesse.mall.entity.*;
 import priv.jesse.mall.service.DataService;
 
 import java.util.HashMap;
@@ -40,5 +37,10 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<HashMap> findCount() {
         return this.dateCountDao.findCount();
+    }
+
+    @Override
+    public List<Object[]> findPie() {
+        return this.dateCountDao.findPie();
     }
 }
