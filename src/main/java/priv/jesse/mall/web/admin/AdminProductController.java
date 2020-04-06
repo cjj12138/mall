@@ -230,6 +230,10 @@ public class AdminProductController {
             }
             productService.saveAll(products);
         }catch (Exception e){
+            for(int i=0;i<fileNames.size();i++){
+                String path = System.getProperty("user.dir") + "\\file\\"+fileNames.get(i);
+                FileUtil.deleteDir(path);
+            }
             return new ResultBean<>(false);
         }
         return new ResultBean<>(true);

@@ -112,7 +112,7 @@ public class AdminClassificationController {
     @RequestMapping("/list.do")
     @ResponseBody
     public ResultBean<List<Classification>> findAll(int type,
-                                                    int pageindex, @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
+                                                    int pageindex, @RequestParam(value = "pageSize", defaultValue = "7") int pageSize) {
         List<Classification> list = new ArrayList<>();
         if (pageindex == -1)
             list = classificationService.findAll(type);

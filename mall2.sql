@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50561
 File Encoding         : 65001
 
-Date: 2020-04-04 17:51:00
+Date: 2020-04-06 20:26:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `classification` (
   `parent_id` int(11) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of classification
@@ -69,11 +69,11 @@ INSERT INTO `classification` VALUES ('17', '补贴补锌', '12', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `date_count`;
 CREATE TABLE `date_count` (
-  `Id` int(10) NOT NULL,
+  `Id` int(10) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `count` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of date_count
@@ -82,6 +82,7 @@ INSERT INTO `date_count` VALUES ('9', '2020-03-30', '4');
 INSERT INTO `date_count` VALUES ('10', '2020-03-31', '1');
 INSERT INTO `date_count` VALUES ('11', '2020-02-25', '2');
 INSERT INTO `date_count` VALUES ('12', '2020-01-31', '5');
+INSERT INTO `date_count` VALUES ('13', '2020-04-06', '1');
 
 -- ----------------------------
 -- Table structure for order
@@ -97,14 +98,14 @@ CREATE TABLE `order` (
   `total` double DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('6', '测试', '拉拉拉', '2020-03-23 13:44:12', '1212121', '4', '5999', '4');
 INSERT INTO `order` VALUES ('7', 'hziee', '出来', '2020-03-24 12:52:51', '12345678901', '2', '640', '5');
 INSERT INTO `order` VALUES ('8', 'hziee', '出来', '2020-03-24 12:53:38', '12345678901', '2', '640', '5');
+INSERT INTO `order` VALUES ('11', 'test', 'trs', '2020-04-06 20:16:18', '13423', '1', '320', '5');
 
 -- ----------------------------
 -- Table structure for order_item
@@ -117,7 +118,7 @@ CREATE TABLE `order_item` (
   `product_id` int(11) DEFAULT NULL,
   `sub_total` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_item
@@ -131,6 +132,7 @@ INSERT INTO `order_item` VALUES ('6', '1', '5', '13', '5999');
 INSERT INTO `order_item` VALUES ('7', '1', '6', '13', '5999');
 INSERT INTO `order_item` VALUES ('8', '2', '7', '19', '640');
 INSERT INTO `order_item` VALUES ('9', '2', '8', '19', '640');
+INSERT INTO `order_item` VALUES ('12', '1', '11', '19', '320');
 
 -- ----------------------------
 -- Table structure for product
@@ -147,12 +149,11 @@ CREATE TABLE `product` (
   `shop_price` bigint(20) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('15', '13', '维生素c', '/mall/admin/product/img/ADBC547BEB8808B2EF85FA21B75F61.jpg', '1', '100', '2020-03-24 12:37:47', '50', '维生素c1');
 INSERT INTO `product` VALUES ('16', '13', '恒健维生素C片VC 维C100片补充维生素C妊娠呕吐发少发黄vc片药用', '/mall/admin/product/img/527E80636987DE66913B2352681776.jpg', '1', '12', '2020-03-24 12:31:16', '10', '恒健维生素C片VC 维C100片补充维生素C妊娠呕吐发少发黄vc片药用');
 INSERT INTO `product` VALUES ('17', '13', '21金维他多维元素100片成人男女补充矿物质氨基酸维生素C', '/mall/admin/product/img/988BB6D8A49C5F08EA1D0D1A3D94F0.jpg', '0', '218', '2020-03-24 12:34:54', '173', '21金维他多维元素100片成人男女补充矿物质氨基酸维生素C');
 INSERT INTO `product` VALUES ('18', '5', '北京同仁堂六味地黄丸360丸水蜜丸补肾虚亏六位地黄地丸', '/mall/admin/product/img/3C16DE1AD2DF0B0AF9BCBAE9F36A1F.jpg', '1', '60', '2020-03-24 12:37:32', '55', '北京同仁堂六味地黄丸360丸水蜜丸补肾虚亏六位地黄地丸');
@@ -177,5 +178,4 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('4', '拉拉拉啊啦啦', 'sjfksjfsjf@11.com', 'lc`', '123456', '18369024922', 'chenchenchen');
 INSERT INTO `user` VALUES ('5', '嘻嘻嘻', '923849234@qq.com', 'test', '123456', '18369024922', 'test');
