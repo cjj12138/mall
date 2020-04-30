@@ -183,20 +183,32 @@
 
                     <i class="fa fa-user-circle"></i>
 
-                    <span class="title">用户管理</span>
+                    <span class="title">会员管理</span>
 
                     <span class="selected"></span>
 
                 </a>
 
             </li>
+            <li class="start active " id="yinye">
 
+                <a href="javascript:changePage('order');">
+
+                    <i class="fa fa-calculator"></i>
+
+                    <span class="title">营业管理</span>
+
+                    <!--<span class="selected"></span>-->
+
+                </a>
+
+            </li>
 
             <li class="" id="category">
 
                 <a href="#">
 
-                    <i class="fa fa-object-group"></i>
+                    <i class="fa fa-bookmark-o"></i>
 
                     <span class="title">分类管理</span>
 
@@ -220,15 +232,42 @@
                     </li>
                 </ul>
             </li>
+            <li class="" id="cangku">
 
-            <li class="" id="order">
+                <a href="#">
 
-                <a href="javascript:changePage('order');">
-                    <i class="fa fa-file-text"></i>
-                    <span class="title">订单管理</span>
+                    <i class="fa fa-object-group"></i>
+
+                    <span class="title">仓库管理</span>
+
+                    <span class="arrow "></span>
+
                 </a>
 
+                <ul class="sub-menu">
+
+                    <li id="ruku">
+                        <a href="javascript:changePage('warehouse');">
+                            <i class="fa fa-file-text"></i>
+                            <span class="title">出库管理</span>
+                        </a>
+                    </li>
+                    <li id="chuku">
+                        <a href="javascript:changePage('product');">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span class="title">入库管理</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+            <!--<li class="" id="order">-->
+
+                <!--<a href="javascript:changePage('order');">-->
+                    <!--<i class="fa fa-file-text"></i>-->
+                    <!--<span class="title">出库管理</span>-->
+                <!--</a>-->
+
+            <!--</li>-->
             <li class="" id="data_product">
 
                 <a href="javascript:changePage('data_display');">
@@ -237,14 +276,14 @@
                 </a>
 
             </li>
-            <li class="last" id="product">
+            <!--<li class="last" id="product">-->
 
-                <a href="javascript:changePage('product');">
-                    <i class="fa fa-shopping-bag"></i>
-                    <span class="title">商品管理</span>
-                </a>
+                <!--<a href="javascript:changePage('product');">-->
+                    <!--<i class="fa fa-shopping-bag"></i>-->
+                    <!--<span class="title">入库管理</span>-->
+                <!--</a>-->
 
-            </li>
+            <!--</li>-->
         </ul>
 
         <!-- END SIDEBAR MENU -->
@@ -403,6 +442,7 @@
             $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
         }
         $("#mainFrame").attr("src", page + "/toList.html");
+        console.log(page + "/toList.html");
     }
 
     changePage("user");

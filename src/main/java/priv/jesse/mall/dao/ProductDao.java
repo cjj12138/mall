@@ -18,6 +18,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * @return
      */
     List<Product> findByCsid(int csid, Pageable pageable);
+    Product findById(int id);
 
     List<Product> findByCsidIn(List<Integer> csids,Pageable pageable);
 

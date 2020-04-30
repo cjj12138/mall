@@ -17,23 +17,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author chen
+ * @version 1.0
+ * @date 2020/4/30 18:54
+ */
 @Controller
-@RequestMapping("/admin/order")
-public class AdminOrderController {
+@RequestMapping("/admin/warehouse")
+public class AdminWareHouseController {
     @Autowired
     private OrderService orderService;
 
     /**
      * 打开订单列表页面
+     *
      * @return
      */
     @RequestMapping("/toList.html")
     public String toList() {
-        return "admin/order/list";
+        return "admin/warehouse/list";
     }
 
     /**
      * 获取所有订单的总数
+     *
      * @return
      */
     @ResponseBody
@@ -46,6 +53,7 @@ public class AdminOrderController {
 
     /**
      * 获取所有订单
+     *
      * @param pageindex
      * @param pageSize
      * @return
@@ -56,11 +64,17 @@ public class AdminOrderController {
                                             @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
         Pageable pageable = new PageRequest(pageindex, pageSize, null);
         List<Order> list = orderService.findAll(pageable).getContent();
+//        Map<String, Object> result = new HashMap<>();
+//        for (Order order : list) {
+//            result.put(order.getId() + "", orderService.findOrderItemById(order.getId()));
+//        }
+//        result.put("list", list);
         return new ResultBean<>(list);
     }
 
     /**
      * 获取订单项
+     *
      * @param orderId
      * @return
      */
@@ -73,13 +87,14 @@ public class AdminOrderController {
 
     /**
      * 发货
+     *
      * @param id
      * @return
      */
     @ResponseBody
     @RequestMapping("/send.do")
     public ResultBean<Boolean> send(int id) {
-        orderService.updateStatus(id,3);
+        orderService.updateStatus(id, 3);
         return new ResultBean<>(true);
     }
 }

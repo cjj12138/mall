@@ -11,6 +11,7 @@ import priv.jesse.mall.dao.OrderItemDao;
 import priv.jesse.mall.dao.ProductDao;
 import priv.jesse.mall.entity.*;
 import priv.jesse.mall.service.OrderService;
+import priv.jesse.mall.service.ProductService;
 import priv.jesse.mall.service.ShopCartService;
 import priv.jesse.mall.service.exception.LoginException;
 import priv.jesse.mall.utils.UUIDUtils;
@@ -18,6 +19,7 @@ import priv.jesse.mall.utils.UUIDUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -181,5 +183,16 @@ public class OrderServiceImpl implements OrderService {
         if (order == null)
             throw new RuntimeException("订单不存在");
         orderDao.updateState(STATE_COMPLETE, order.getId());
+    }
+
+    @Override
+    public List<Product> findOrderItemById(int orderId) {
+        List<Product> products=new ArrayList<>();
+        List<OrderItem> orderItems=orderItemDao.findByOrderId(orderId);
+        for (OrderItem o: orderItems
+             ) {
+            products.add(productDao.getOne(o.getProductId()));
+        }
+        return products;
     }
 }

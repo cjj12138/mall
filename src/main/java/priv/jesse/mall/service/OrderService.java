@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import priv.jesse.mall.entity.Order;
 import priv.jesse.mall.entity.OrderItem;
+import priv.jesse.mall.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ public interface OrderService {
     int STATE_WAITE_SEND = 2;
     int STATE_WAITE_RECEIVE = 3;
     int STATE_COMPLETE = 4;
+
 
 
     /**
@@ -114,4 +116,11 @@ public interface OrderService {
      * @param orderId
      */
     void receive(int orderId);
+
+    /**
+     * 根据orderId查找item
+     * @param orderId
+     * @return
+     */
+    List<Product> findOrderItemById(int orderId);
 }
