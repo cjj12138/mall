@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8"/>
-		<title>用户列表</title>
+		<title>会员列表</title>
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
@@ -21,14 +21,14 @@
 	<body>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<h3 class="page-title"><i class="fa fa-user-circle"></i>用户管理</h3>
+				<h3 class="page-title"><i class="fa fa-user-circle"></i>会员管理</h3>
 				<ul class="breadcrumb">
 					<li>
-						<a href="list.html"><i class="fa fa-home"></i>用户管理</a>
+						<a href="list.html"><i class="fa fa-home"></i>会员管理</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
-						<a href="#">编辑用户</a>
+						<a href="#">添加会员</a>
 					</li>
 				</ul>
 			</div>
@@ -37,51 +37,51 @@
 					<div class="portlet-title">
 						<div class="caption">
 							<i class="fa fa-reorder"></i>
-							编辑用户信息
+							添加会员信息
 						</div>
 					</div>
 					<div class="portlet-body">
 						<form class="form-horizontal" >
+							<!--<div class="control-group">-->
+								<!--<label class="control-label">会员ID：</label>-->
+								<!--<div class="controls">-->
+									<!--<input name="id" th:value="${user.id }" readonly="readonly" type="text" class="m-wrap media" />-->
+									<!--<span class="help-inline"></span>-->
+								<!--</div>-->
+							<!--</div>-->
 							<div class="control-group">
-								<label class="control-label">用户ID：</label>
-								<div class="controls">
-									<input name="id" th:value="${user.id }" readonly="readonly" type="text" class="m-wrap media" />
-									<span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label">用户名称：</label>
+								<label class="control-label">会员名称：</label>
 								<div class="controls">
 									<input name="username" th:value="${user.username }" type="text" class="m-wrap media" />
-									<span class="help-inline">username</span>
+									<!--<span class="help-inline">username</span>-->
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label">真实姓名：</label>
 								<div class="controls">
 									<input name="name" th:value="${user.name }" type="text" class="m-wrap media" />
-									<span class="help-inline">name</span>
+									<!--<span class="help-inline">name</span>-->
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label">电话号码：</label>
 								<div class="controls">
 									<input name="phone" th:value="${user.phone }" type="text" class="m-wrap media" />
-									<span class="help-inline">phone</span>
+									<!--<span class="help-inline">phone</span>-->
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label">密码：</label>
 								<div class="controls">
 									<input name="password" th:value="${user.password }" type="text" class="m-wrap media" />
-									<span class="help-inline">password</span>
+									<!--<span class="help-inline">password</span>-->
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label">邮箱：</label>
 								<div class="controls">
 									<input name="email" th:value="${user.email }" type="text" class="m-wrap media" />
-									<span class="help-inline">email</span>
+									<!--<span class="help-inline">email</span>-->
 								</div>
 							</div>
 							<div class="control-group">
@@ -91,7 +91,7 @@
 								</div>
 							</div>
 							<div class="form-actions">
-								<button type="button" onclick="update()" class="btn blue"><i class="fa fa-check"></i>确定</button>&emsp;
+								<button type="button" onclick="" class="btn blue"><i class="fa fa-check"></i>确定</button>&emsp;
 								<button type="reset" class="btn green"><i class="fa fa-mail-reply"></i>重置</button>&emsp;
 								<button type="button" id="back" class="btn"><i class="fa fa-times"></i>返回</button>
 							</div>
@@ -122,7 +122,7 @@
 			});
 			
 			function update(){
-				if(!confirm("确定更新改用户信？")){
+				if(!confirm("确定更新改会员信？")){
 					return;
 				}
 

@@ -20,6 +20,7 @@ public class AdminUserController {
 
     /**
      * 打开用户列表页面
+     *
      * @return
      */
     @RequestMapping("/toList.html")
@@ -27,8 +28,14 @@ public class AdminUserController {
         return "admin/user/list";
     }
 
+    @RequestMapping("/toAdd.html")
+    public String toAdd() {
+        return "admin/user/add";
+    }
+
     /**
      * 打开编辑页面
+     *
      * @param id
      * @param map
      * @return
@@ -72,9 +79,9 @@ public class AdminUserController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/update.do")
-    public ResultBean<Boolean> update(int id,String username,
-                                      String password,String name,
-                                      String phone,String email,
+    public ResultBean<Boolean> update(int id, String username,
+                                      String password, String name,
+                                      String phone, String email,
                                       String addr) {
         // 更新前先查询
         User user = userService.findById(id);
@@ -87,5 +94,28 @@ public class AdminUserController {
         user.setPhone(phone);
         userService.update(user);
         return new ResultBean<>(true);
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/add.do")
+    public ResultBean<Boolean> add(String username,
+                                   String password, String name,
+                                   String phone, String email,
+                                   String addr) {
+        User user = new User();
+        user.setAddr(addr);
+        user.setName(name);
+        user.setEmail(email);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAddr(addr);
+        user.setEmail(email);
+        user.setPhone(phone);
+        int count = userService.create(user);
+        if (count > 0) {
+            return new ResultBean<>(true);
+        } else {
+            return new ResultBean<>(false);
+        }
     }
 }
