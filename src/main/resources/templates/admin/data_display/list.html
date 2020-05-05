@@ -72,17 +72,17 @@
 
     function setbarTabledata() {
         $.ajax({
-            url: "/mall/admin/data_display/product_order_bar",
+            url: "/mall/admin/data_display/product_order_today",
             type: "get",
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 var xdata = new Array();
                 var ydata = new Array();
                 for (var i in result.data) {
-                    xdata.push(result.data[i][8])
-                    ydata.push(result.data[i][9])
+                    xdata.push(i)
+                    ydata.push(result.data[i])
                 }
-                console.log(xdata)
+                // console.log(xdata)
                 myChart00.setOption(option);
                 myChart00.setOption({
                     xAxis: {
@@ -132,12 +132,25 @@
                     yAxis: {
                         type: 'value'
                     },
+                    title: {
+                        text: "今日商品销售数量柱状图",
+                        show: true,
+                        textAlign: "auto",
+                        left: "20%"
+                    },
                     series: [{
                         // 根据名字对应到相应的系列
-                        name: "订单数量",
+                        name: "今日商品销售数量",
                         data: ydata,
-                        type: 'bar'
-                    }]
+                        type: 'bar',
+                        label: [{
+                            show: true
+                        }]
+                    }],
+                    tooltip: {
+                        trigger: 'item',
+                        position: ['50%', '50%']
+                    }
                 });
             }
         })
@@ -148,16 +161,20 @@
             url: "/mall/admin/data_display/product_order_line",
             type: "get",
             success: function (result) {
-                console.log(result.data);
+                console.log(result);
                 var xdata = new Array();
                 var ydata = new Array();
                 for (var i in result.data) {
-                    xdata.push(result.data[i].date);
-                    ydata.push(result.data[i].count);
+                    console.log(result.data[i]);
+                    var data=result.data[i];
+                    xdata.push(data[0]);
+                    ydata.push(data[1]);
                 }
+                console.log(xdata);
                 myChart01.setOption(option);
                 myChart01.setOption({
                     xAxis: {
+
                         type: 'category',
                         data: xdata,
                         axisLabel: {
@@ -165,7 +182,7 @@
                             formatter: function (params) {
                                 var newParamsName = "";// 最终拼接成的字符串
                                 var paramsNameNumber = params.length;// 实际标签的个数
-                                var provideNumber = 8;// 每行能显示的字的个数
+                                var provideNumber = 5;// 每行能显示的字的个数
                                 var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
                                 /**
                                  * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
@@ -204,9 +221,20 @@
                     yAxis: {
                         type: 'value'
                     },
+                    title: {
+                        text: "每日客户量折线图（近七日）",
+                        show: true,
+                        textAlign: "auto",
+                        left: "20%"
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        position: ['50%', '50%'],
+                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                    },
                     series: [{
                         // 根据名字对应到相应的系列
-                        name: "订单数量",
+                        name: "客户数量",
                         data: ydata,
                         type: 'line'
                     }]
@@ -217,15 +245,21 @@
 
     function setpieTabledata() {
         $.ajax({
-            url: "/mall/admin/data_display/product_order_pie",
+            url: "/mall/admin/data_display/product_order_Area",
             type: "get",
             success: function (result) {
-                var name_data = new Array();
-                console.log(result.data)
+                var legend_data = new Array();
+
+                var series_data = new Array();
                 for (var i in result.data) {
-                    name_data.push(result.data[i].name)
+                    legend_data.push(i);
+                    var map1 = new Map();
+                    map1.set("value", result.data[i]);
+                    map1.set("name", i);
+                    series_data.push(JSON.parse(MapTOJson(map1)));
                 }
-                console.log(name_data)
+                // console.log(legend_data);
+                // console.log(series_data);
                 myChart02.setOption(option)
                 myChart02.setOption({
                     tooltip: {
@@ -234,30 +268,56 @@
                     },
                     series: [
                         {
-                            name: '药品名称',
+                            name: '省份订单数量',
                             type: 'pie',
-                            radius: ['50%', '70%'],
-                            avoidLabelOverlap: false,
-                            label: {
-                                show: false,
-                                position: 'center'
-                            },
+                            radius: '55%',
+                            enter: ['50%', '60%'],
+
                             emphasis: {
-                                label: {
-                                    show: true,
-                                    fontSize: '30',
-                                    fontWeight: 'bold'
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
                                 }
                             },
-                            labelLine: {
-                                show: false
-                            },
-                            data: result.data
+                            data: series_data
+
                         }
-                    ]
+                    ],
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: legend_data
+                    },
+                    title: {
+                        text: '各省份订单分布',
+
+                        left: 'center'
+                    }
                 })
             }
         })
+    }
+
+    /**
+     * map转json
+     * @param map
+     * @returns {string}
+     * @constructor
+     */
+    function MapTOJson(m) {
+        var str = '{';
+        var i = 1;
+        m.forEach(function (item, key, mapObj) {
+            if(mapObj.size == i){
+                str += '"'+ key+'":"'+ item + '"';
+            }else{
+                str += '"'+ key+'":"'+ item + '",';
+            }
+            i++;
+        });
+        str +='}';
+        return str;
     }
 </script>
 </html>

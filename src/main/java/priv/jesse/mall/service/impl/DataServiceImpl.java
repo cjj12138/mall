@@ -43,4 +43,19 @@ public class DataServiceImpl implements DataService {
     public List<Object[]> findPie() {
         return this.dateCountDao.findPie();
     }
+
+    @Override
+    public List<Object[]> findOrderToday() {
+        return orderDao.findOrderToday();
+    }
+
+    @Override
+    public List<Object[]> findOrderCountByArea() {
+        return orderDao.findOrderCountByArea();
+    }
+
+    @Override
+    public List<Object[]> findOrderCountByDay() {
+        return dateCountDao.findOrderCountByDay();
+    }
 }

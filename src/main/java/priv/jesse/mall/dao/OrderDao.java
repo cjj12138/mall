@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface OrderDao extends JpaRepository<Order, Integer> {
 
@@ -37,5 +38,15 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
 
     List<Order> findAll();
 
+    @Query(value = "select p.title , count(p.title) as `count`  \n" +
+            "FROM `order` o INNER JOIN order_item ot on ot.order_id=o.id\n" +
+            "INNER JOIN product p on p.id=ot.product_id\n" +
+            "WHERE date(o.order_time)=date(now()) and o.state!=1\n" +
+            "GROUP BY p.title\n",nativeQuery = true)
+    List<Object[]> findOrderToday();
 
+    @Query(value = "select SUBSTRING_INDEX(`order`.addr,'省',1) as '地区',count('地区') AS '数量'\n" +
+            "from `order`\n" +
+            "GROUP BY SUBSTRING_INDEX(`order`.addr,'省',1)",nativeQuery = true)
+    List<Object[]> findOrderCountByArea();
 }

@@ -8,19 +8,37 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import priv.jesse.mall.service.DataService;
+import priv.jesse.mall.service.OrderService;
 import priv.jesse.mall.utils.FileUtil;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MallApplicationTests {
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private DataService dataService;
+    @Test
+    public void tesst1(){
+        List<Object[]> res = dataService.findOrderToday();
+        for(Object[] o:res){
+            for(Object o1:o){
+                System.out.println(o1.toString());
+            }
+        }
+    }
 
     @Test
     public void contextLoads() {

@@ -24,7 +24,8 @@ public class AdminDataDisplayController {
 
     @RequestMapping("/product_order_line")
     public ResultBean<List<DateCount>> getOrder_line(){
-        List<DateCount> orders=this.dataService.findAll();
+        List<Object[]> orders=this.dataService.findOrderCountByDay();
+        Collections.reverse(orders);
         System.out.println(orders);
         ResultBean<List<DateCount>> resultBean=new ResultBean(orders);
         return resultBean;
@@ -46,5 +47,25 @@ public class AdminDataDisplayController {
             nameValues.add(nameValue);
         }
         return new ResultBean<>(nameValues);
+    }
+
+    @RequestMapping("/product_order_today")
+    public ResultBean<Map<String,String>> countToday(){
+        List<Object[]> title_count=dataService.findOrderToday();
+        Map<String,String> res=new HashMap<>();
+        for(Object[] objects:title_count){
+            res.put(objects[0].toString(),objects[1].toString());
+        }
+        return new ResultBean<>(res);
+    }
+
+    @RequestMapping("/product_order_Area")
+    public ResultBean<Map<String,String>> countArea(){
+        List<Object[]> orderCountByArea = dataService.findOrderCountByArea();
+        Map<String,String> res=new HashMap<>();
+        for(Object[] objects:orderCountByArea){
+            res.put(objects[0].toString(),objects[1].toString());
+        }
+        return new ResultBean<>(res);
     }
 }

@@ -15,4 +15,21 @@ public interface DataService {
     List<HashMap> findCount();
 
     List<Object[]> findPie();
+    /**
+     * 查询当天各商品的销售量
+     * @return
+     */
+    List<Object[]> findOrderToday();
+
+    /**
+     * 获取订单不同省份的个数
+     * @return
+     */
+    List<Object[]> findOrderCountByArea();
+
+    /**
+     * 获取近七天 每天的销售量
+     * @return
+     */
+    List<Object[]> findOrderCountByDay();
 }
