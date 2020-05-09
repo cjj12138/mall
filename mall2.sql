@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50561
 File Encoding         : 65001
 
-Date: 2020-05-09 19:50:32
+Date: 2020-05-09 20:28:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -73,7 +73,7 @@ CREATE TABLE `date_count` (
   `date` date NOT NULL,
   `count` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of date_count
@@ -91,6 +91,11 @@ INSERT INTO `date_count` VALUES ('18', '2020-05-05', '1');
 INSERT INTO `date_count` VALUES ('19', '2020-05-05', '1');
 INSERT INTO `date_count` VALUES ('20', '2020-05-06', '1');
 INSERT INTO `date_count` VALUES ('21', '2020-05-08', '1');
+INSERT INTO `date_count` VALUES ('22', '2020-05-09', '1');
+INSERT INTO `date_count` VALUES ('23', '2020-05-09', '1');
+INSERT INTO `date_count` VALUES ('24', '2020-05-09', '1');
+INSERT INTO `date_count` VALUES ('25', '2020-05-09', '1');
+INSERT INTO `date_count` VALUES ('26', '2020-05-09', '1');
 
 -- ----------------------------
 -- Table structure for order
@@ -106,7 +111,7 @@ CREATE TABLE `order` (
   `total` double DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
@@ -118,6 +123,11 @@ INSERT INTO `order` VALUES ('16', '浙江省杭州市临安区杭州电子科技
 INSERT INTO `order` VALUES ('17', '湖北省武汉市洪山区11111', '王龙', '2020-05-05 14:01:41', '12345678923', '2', '55', '5');
 INSERT INTO `order` VALUES ('18', '福建省厦门市湖里区hziee', 'wanglong', '2020-05-06 10:46:15', '12345678901', '2', '173', '5');
 INSERT INTO `order` VALUES ('19', '湖南省郴州市桂东县111', '1111', '2020-05-08 10:56:52', '11111', '2', '329', '5');
+INSERT INTO `order` VALUES ('20', '山东省德州市武城县11111', '王龙', '2020-05-09 19:54:24', '17892673412', '2', '320', '5');
+INSERT INTO `order` VALUES ('21', '浙江省台州市仙居县1111', 'wanglong', '2020-05-09 19:56:58', '1323423468', '2', '340', '5');
+INSERT INTO `order` VALUES ('22', '湖北省武汉市江夏区111', 'wanglong', '2020-05-07 20:00:09', '1247943421', '2', '10', '5');
+INSERT INTO `order` VALUES ('23', '湖北省黄冈市黄梅县2324', 'wanglong', '2020-05-08 20:03:33', '123432421', '2', '330', '5');
+INSERT INTO `order` VALUES ('24', '浙江省舟山市定海区杭州电子科技大学', 'wanglong', '2020-05-13 20:04:47', '2343576531', '2', '969', '5');
 
 -- ----------------------------
 -- Table structure for order_item
@@ -130,7 +140,7 @@ CREATE TABLE `order_item` (
   `product_id` int(11) DEFAULT NULL,
   `sub_total` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_item
@@ -147,12 +157,20 @@ INSERT INTO `order_item` VALUES ('9', '2', '8', '19', '640');
 INSERT INTO `order_item` VALUES ('12', '1', '11', '19', '320');
 INSERT INTO `order_item` VALUES ('13', '1', '12', '19', '320');
 INSERT INTO `order_item` VALUES ('14', '1', '13', '19', '320');
-INSERT INTO `order_item` VALUES ('15', '1', '14', '16', '10');
-INSERT INTO `order_item` VALUES ('16', '1', '15', '16', '10');
+INSERT INTO `order_item` VALUES ('15', '1', '14', '16', '100');
+INSERT INTO `order_item` VALUES ('16', '1', '15', '16', '100');
 INSERT INTO `order_item` VALUES ('17', '1', '16', '19', '320');
-INSERT INTO `order_item` VALUES ('18', '1', '17', '18', '55');
+INSERT INTO `order_item` VALUES ('18', '1', '17', '18', '550');
 INSERT INTO `order_item` VALUES ('19', '1', '18', '17', '173');
 INSERT INTO `order_item` VALUES ('20', '1', '19', '21', '329');
+INSERT INTO `order_item` VALUES ('21', '1', '20', '19', '320');
+INSERT INTO `order_item` VALUES ('22', '2', '21', '16', '20');
+INSERT INTO `order_item` VALUES ('23', '1', '21', '19', '320');
+INSERT INTO `order_item` VALUES ('24', '1', '22', '16', '10');
+INSERT INTO `order_item` VALUES ('25', '1', '23', '16', '10');
+INSERT INTO `order_item` VALUES ('26', '1', '23', '19', '320');
+INSERT INTO `order_item` VALUES ('27', '2', '24', '19', '640');
+INSERT INTO `order_item` VALUES ('28', '1', '24', '21', '329');
 
 -- ----------------------------
 -- Table structure for product
@@ -174,9 +192,9 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('16', '13', '恒健维生素C片VC 维C100片补充维生素C妊娠呕吐发少发黄vc片药用', '/mall/admin/product/img/527E80636987DE66913B2352681776.jpg', '1', '12', '2020-03-24 12:31:16', '10', '恒健维生素C片VC ');
+INSERT INTO `product` VALUES ('16', '13', '恒健维生素C片VC 维C100片补充维生素C妊娠呕吐发少发黄vc片药用', '/mall/admin/product/img/527E80636987DE66913B2352681776.jpg', '1', '12', '2020-03-24 12:31:16', '50', '恒健维生素C片VC ');
 INSERT INTO `product` VALUES ('17', '13', '21金维他多维元素100片成人男女补充矿物质氨基酸维生素C', '/mall/admin/product/img/988BB6D8A49C5F08EA1D0D1A3D94F0.jpg', '0', '218', '2020-03-24 12:34:54', '173', '21金维他多维元素');
-INSERT INTO `product` VALUES ('18', '5', '北京同仁堂六味地黄丸360丸水蜜丸补肾虚亏六位地黄地丸', '/mall/admin/product/img/3C16DE1AD2DF0B0AF9BCBAE9F36A1F.jpg', '1', '60', '2020-03-24 12:37:32', '55', '北京同仁堂六味地黄丸');
+INSERT INTO `product` VALUES ('18', '5', '北京同仁堂六味地黄丸360丸水蜜丸补肾虚亏六位地黄地丸', '/mall/admin/product/img/3C16DE1AD2DF0B0AF9BCBAE9F36A1F.jpg', '1', '60', '2020-03-24 12:37:32', '100', '北京同仁堂六味地黄丸');
 INSERT INTO `product` VALUES ('19', '5', '汇仁肾宝片126片补肾虚肾阳虚汇仁牌肾保片汇源贤宝片正品', '/mall/admin/product/img/BD577C815C5592C26AE6B53DAB9D4E.jpg', '1', '360', '2020-03-24 12:38:53', '320', '汇仁肾宝片');
 INSERT INTO `product` VALUES ('21', '6', '太太静心口服液10支改善睡眠安神更年期神经衰弱治失眠药', '/mall/admin/product/img/F5AC94724EAEB29AB051C0DEDA2FE6.jpg', '0', '360', '2020-03-24 12:43:44', '329', '太太静心口服液');
 
