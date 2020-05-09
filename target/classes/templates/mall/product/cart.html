@@ -35,12 +35,12 @@
         </div>
         <div class="layui-row" id="order_form">
             <div class="layui-col-md5 layui-col-sm5 layui-col-xs12 layui-col-md-offset7" style="width: 100%">
-                <form class="layui-form" id="form_order" action="../order/submit.do">
+                <form id="form_order" action="../order/submit.do">
                     <div class="layui-form-item">
                         <label class="layui-form-label">收货人：</label>
                         <div class="layui-input-block">
                             <input type="text" name="name" required="required" lay-verify="required"
-                                   placeholder="请输入收货人"
+                                   placeholder="请输入收货人" style="width: 400px"
                                    autocomplete="off" class="layui-input"/>
                         </div>
                     </div>
@@ -49,12 +49,12 @@
                         <label class="layui-form-label">电话：</label>
                         <div class="layui-input-block">
                             <input type="text" name="phone" required="required" lay-verify="required"
-                                   placeholder="请输入收货人电话"
+                                   placeholder="请输入收货人电话" style="width: 400px"
                                    autocomplete="off" class="layui-input"/>
                         </div>
                     </div>
 
-                    <div class="">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">地址：</label>
                         <!--<div class="layui-input-block">-->
                             <!--<input type="text" name="addr" required="required" lay-verify="required"-->
@@ -62,8 +62,8 @@
                                    <!--autocomplete="off" class="layui-input"/>-->
                         <!--</div>-->
 
-                        <div class="city-picker-select"></div>
-                        <input placeholder="具体地址" name="detail_addr" class="layui-input"/>
+                        <div class="city-picker-select" style="float: left"></div>
+                        <input placeholder="具体地址" name="detail_addr" class="layui-input" style="width: 34%"/>
                         <input name="addr" class="layui-input" type="hidden" value="默认地址"/>
                     </div>
 
@@ -151,16 +151,16 @@
             });
 
             //设置城市
-            select.setCityVal([{
-                'id': '140000',
-                'name': '山西省'
-            }, {
-                'id': '140100',
-                'name': '太原市'
-            }, {
-                'id': '140105',
-                'name': '小店区'
-            }]);
+            // select.setCityVal([{
+            //     'id': '140000',
+            //     'name': '浙江省'
+            // }, {
+            //     'id': '140100',
+            //     'name': '太原市'
+            // }, {
+            //     'id': '140105',
+            //     'name': '小店区'
+            // }]);
 
             $("form[id='form_order']").submit(function (e) {
                 addr()
@@ -222,8 +222,8 @@
         }
         function addr() {
             var addr=""
-            $("input[class='layui-input layui-unselect']").each(function(){
-                addr=addr+$(this).val();
+            $("select").each(function () {
+                addr+=$(this).find("option:selected").text();
             });
             var detail_addr=$("input[name='detail_addr']").val();
             $("input[name='addr']").attr("value",addr+detail_addr);

@@ -32,4 +32,15 @@ public interface DataService {
      * @return
      */
     List<Object[]> findOrderCountByDay();
+
+    /**
+     * 获取一周内热销热三的商品个天的销量
+     * @return
+     */
+    List<Object[]> findItemWeek();
+
+    /**
+     * 获取一月内热销热三的商品每周的销量
+     */
+    List<Object[]> findItemMonth();
 }

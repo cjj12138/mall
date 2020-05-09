@@ -2,6 +2,7 @@ package priv.jesse.mall.web.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -65,8 +66,16 @@ public class AdminController {
         response.sendRedirect("toLogin.html");
     }
 
-    @RequestMapping("/data_display/toList.html")
+    @RequestMapping("/area/toList.html")
     public String toList() {
-        return "admin/data_display/list";
+        return "admin/data_display/area";
+    }
+    @RequestMapping("/sale/toList.html")
+    public String toList1() {
+        return "admin/data_display/sale";
+    }
+    @RequestMapping("/customer/toList.html")
+    public String toList2() {
+        return "admin/data_display/customer";
     }
 }

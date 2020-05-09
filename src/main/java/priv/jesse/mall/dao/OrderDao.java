@@ -49,4 +49,41 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
             "from `order`\n" +
             "GROUP BY SUBSTRING_INDEX(`order`.addr,'省',1)",nativeQuery = true)
     List<Object[]> findOrderCountByArea();
+
+    @Query(value = "select dayname(o.order_time),p.title,sum(ot.sub_total)\n" +
+            "FROM `order` o INNER JOIN order_item ot on ot.order_id=o.id\n" +
+            "INNER JOIN product p on p.id=ot.product_id\n" +
+            "where p.id in(\n" +
+            "\tselect t.id from(\n" +
+            "\t\tselect p.* \n" +
+            "\t\tfrom `order` o inner join order_item ot on o.id=ot.order_id\n" +
+            "\t\tINNER JOIN product p on p.id=ot.product_id\n" +
+            "\t\tWHERE week(now())=week(o.order_time)\n" +
+            "\t\tGROUP BY p.id\n" +
+            "\t\tORDER BY count(p.id) desc \n" +
+            "\t\tlimit 3\n" +
+            "\t) as t\n" +
+            ")\n" +
+            " GROUP BY dayname(o.order_time),p.title\n" +
+            "\n",nativeQuery = true)
+    List<Object[]> findItemWeek();
+
+
+    @Query(value = "select week(o.order_time),p.title,sum(ot.sub_total),week(LAST_DAY(NOW()))\n" +
+            "FROM `order` o INNER JOIN order_item ot on ot.order_id=o.id\n" +
+            "INNER JOIN product p on p.id=ot.product_id\n" +
+            "where p.id in(\n" +
+            "\tselect t.id from(\n" +
+            "\t\tselect p.* \n" +
+            "\t\tfrom `order` o inner join order_item ot on o.id=ot.order_id\n" +
+            "\t\tINNER JOIN product p on p.id=ot.product_id\n" +
+            "\t\tWHERE month(now())=month(o.order_time)\n" +
+            "\t\tGROUP BY p.id\n" +
+            "\t\tORDER BY count(p.id) desc \n" +
+            "\t\tlimit 3\n" +
+            "\t) as t\n" +
+            ")\n" +
+            " GROUP BY week(o.order_time),p.title\n" +
+            "\n" ,nativeQuery = true)
+    List<Object[]> findItemMonth();
 }

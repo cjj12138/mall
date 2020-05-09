@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <meta charset="UTF-8"/>
+    <title>数据中心</title>
+    <script th:src="@{/js/echarts.min.js}" type="text/javascript"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style-metro.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:href="@{/css/uniform.default.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/pagination.css}" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" th:href="@{/image/favicon.ico}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3 class="page-title"><i class="fa fa-file-text"></i> 数据中心</h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="fa fa-home"></i>数据中心</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <a href="#">销售分析</a>
+        </ul>
+    </div>
+    <div>
+        <div id="main00" style="width: 400px;height:400px;float: left;margin: auto"></div>
+        <div id="main01" style="width: 500px;height:500px;float: left;margin: auto"></div>
+        <div>
+            <button value="本月销售额" onclick="setlineTabledata('/mall/admin/data_display/product_order_week')">本月销售额</button>
+            <button value="本周销售额" onclick="setlineTabledata('/mall/admin/data_display/product_order_day')">本周销售额</button>
+        </div>
+        <!--<div id="main02" style="width: 400px;height:400px;margin:0px auto"></div>-->
+
+    </div>
+</div>
+</body>
+<script th:src="@{/js/jquery-1.10.1.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script th:src="@{/js/jquery-ui-1.10.1.custom.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+<script type="text/javascript">
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart00 = echarts.init(document.getElementById('main00'));
+    var myChart01 = echarts.init(document.getElementById('main01'));
+    // var myChart02 = echarts.init(document.getElementById('main02'));
+
+
+    // 指定图表的配置项和数据
+    option = {};
+
+    // 使用刚指定的配置项和数据显示图表。
+    //myChart.setOption(option);
+
+    $(function () {
+
+        //adding your code here
+        setbarTabledata();
+        setlineTabledata("/mall/admin/data_display/product_order_day");
+        // setpieTabledata()
+
+    });
+
+
+    function setbarTabledata() {
+        $.ajax({
+            url: "/mall/admin/data_display/product_order_today",
+            type: "get",
+            success: function (result) {
+                // console.log(result)
+                var xdata = new Array();
+                var ydata = new Array();
+                for (var i in result.data) {
+                    xdata.push(i)
+                    ydata.push(result.data[i])
+                }
+                // console.log(xdata)
+                myChart00.setOption(option);
+                myChart00.setOption({
+                    xAxis: {
+                        type: 'category',
+                        data: xdata,
+                        axisLabel: {
+                            interval: 0,
+                            formatter: function (params) {
+                                var newParamsName = "";// 最终拼接成的字符串
+                                var paramsNameNumber = params.length;// 实际标签的个数
+                                var provideNumber = 8;// 每行能显示的字的个数
+                                var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+                                /**
+                                 * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
+                                 */
+                                // 条件等同于rowNumber>1
+                                if (paramsNameNumber > provideNumber) {
+                                    /** 循环每一行,p表示行 */
+                                    /*<![CDATA[*/
+                                    for (var p = 0; p < rowNumber; p++) {
+                                        var tempStr = "";// 表示每一次截取的字符串
+                                        var start = p * provideNumber;// 开始截取的位置
+                                        var end = start + provideNumber;// 结束截取的位置
+                                        // 此处特殊处理最后一行的索引值
+                                        if (p == rowNumber - 1) {
+                                            // 最后一次不换行
+                                            tempStr = params.substring(start, paramsNameNumber);
+                                        } else {
+                                            // 每一次拼接字符串并换行
+                                            tempStr = params.substring(start, end) + "\n";
+                                        }
+                                        newParamsName += tempStr;// 最终拼成的字符串
+                                    }
+                                    /*]]>*/
+
+                                } else {
+                                    // 将旧标签的值赋给新标签
+                                    newParamsName = params;
+                                }
+                                //将最终的字符串返回
+                                return newParamsName
+                                return params.split("").join("\n");
+
+                            }
+                        }
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+
+                    title: {
+                        text: "今日商品销售数量柱状图",
+                        show: true,
+                        textAlign: "auto",
+                        left: "20%"
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: "今日商品销售数量",
+                        data: ydata,
+                        type: 'bar',
+                        label: [{
+                            show: true
+                        }]
+                    }],
+                    tooltip: {
+                        trigger: 'item',
+                        position: ['50%', '50%']
+                    }
+                });
+            }
+        })
+    }
+
+    function setlineTabledata(url) {
+        $.ajax({
+            url: url,
+            type: "get",
+            success: function (result) {
+                var xdata = result.data.xAxis;
+                var legends = result.data.legend;
+                console.log(legends);
+                var series = new Array();
+                for (var i in result.data.series) {
+                    series.push(result.data.series[i]);
+                }
+                series=nullTozero(series);
+                console.log(series);
+                myChart01.setOption(option);
+                myChart01.setOption({
+                    xAxis: {
+
+                        type: 'category',
+                        data: xdata,
+                        boundaryGap: false,
+                        axisLabel: {
+                            interval: 0,
+                            formatter: function (params) {
+                                var newParamsName = "";// 最终拼接成的字符串
+                                var paramsNameNumber = params.length;// 实际标签的个数
+                                var provideNumber = 5;// 每行能显示的字的个数
+                                var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
+                                /**
+                                 * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
+                                 */
+                                // 条件等同于rowNumber>1
+                                if (paramsNameNumber > provideNumber) {
+                                    /** 循环每一行,p表示行 */
+                                    /*<![CDATA[*/
+                                    for (var p = 0; p < rowNumber; p++) {
+                                        var tempStr = "";// 表示每一次截取的字符串
+                                        var start = p * provideNumber;// 开始截取的位置
+                                        var end = start + provideNumber;// 结束截取的位置
+                                        // 此处特殊处理最后一行的索引值
+                                        if (p == rowNumber - 1) {
+                                            // 最后一次不换行
+                                            tempStr = params.substring(start, paramsNameNumber);
+                                        } else {
+                                            // 每一次拼接字符串并换行
+                                            tempStr = params.substring(start, end) + "\n";
+                                        }
+                                        newParamsName += tempStr;// 最终拼成的字符串
+                                    }
+                                    /*]]>*/
+
+                                } else {
+                                    // 将旧标签的值赋给新标签
+                                    newParamsName = params;
+                                }
+                                //将最终的字符串返回
+                                return newParamsName
+                                return params.split("").join("\n");
+
+                            }
+                        }
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    legend: {
+                        data: legends,
+                        textStyle: {
+                            fontSize: 10
+                        }
+
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    series: series
+
+
+                });
+            }
+        });
+    }
+
+    function setpieTabledata() {
+        $.ajax({
+            url: "/mall/admin/data_display/product_order_Area",
+            type: "get",
+            success: function (result) {
+                var legend_data = new Array();
+
+                var series_data = new Array();
+                for (var i in result.data) {
+                    legend_data.push(i);
+                    var map1 = new Map();
+                    map1.set("value", result.data[i]);
+                    map1.set("name", i);
+                    series_data.push(JSON.parse(MapTOJson(map1)));
+                }
+                // console.log(legend_data);
+                // console.log(series_data);
+                myChart02.setOption(option)
+                myChart02.setOption({
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b}: {c} ({d}%)'
+                    },
+                    series: [
+                        {
+                            name: '省份订单数量',
+                            type: 'pie',
+                            radius: '55%',
+                            enter: ['50%', '60%'],
+
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            },
+                            data: series_data
+
+                        }
+                    ],
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: legend_data
+                    },
+                    title: {
+                        text: '各省份订单分布',
+
+                        left: 'center'
+                    }
+                })
+            }
+        })
+    }
+
+    /**
+     * map转json
+     * @param map
+     * @returns {string}
+     * @constructor
+     */
+    function MapTOJson(m) {
+        var str = '{';
+        var i = 1;
+        m.forEach(function (item, key, mapObj) {
+            if (mapObj.size == i) {
+                str += '"' + key + '":"' + item + '"';
+            } else {
+                str += '"' + key + '":"' + item + '",';
+            }
+            i++;
+        });
+        str += '}';
+        return str;
+    }
+
+    function nullTozero(array) {
+        for(var i in array){
+            var temp_array=array[i];
+            for (var j in temp_array){
+                if (temp_array[j]==null){
+                    temp_array[j]=0
+                }
+            }
+        }
+        return array
+    }
+</script>
+</html>

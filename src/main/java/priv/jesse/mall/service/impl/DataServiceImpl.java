@@ -58,4 +58,14 @@ public class DataServiceImpl implements DataService {
     public List<Object[]> findOrderCountByDay() {
         return dateCountDao.findOrderCountByDay();
     }
+
+    @Override
+    public List<Object[]> findItemWeek() {
+        return orderDao.findItemWeek();
+    }
+
+    @Override
+    public List<Object[]> findItemMonth() {
+        return orderDao.findItemMonth();
+    }
 }
