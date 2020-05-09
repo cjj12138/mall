@@ -118,7 +118,6 @@ public class AdminDataDisplayController {
             temp.put("name",legends.get(i).toString());
             temp.put("data",count);
             temp.put("type","line");
-            temp.put("stack","总量");
             title_count.add(temp);
         }
         Map<String,Object> res= new HashMap<>();
